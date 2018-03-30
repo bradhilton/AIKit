@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		29CC3B8B206EB6E60083F308 /* AIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3B8A206EB6E60083F308 /* AIViewController.swift */; };
 		29CC3B8D206EB70B0083F308 /* AIKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29CC3B8C206EB70B0083F308 /* AIKit.storyboard */; };
+		29CC3B8F206EBC0A0083F308 /* BlurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3B8E206EBC0A0083F308 /* BlurViewController.swift */; };
+		29CC3B91206EBC310083F308 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3B90206EBC310083F308 /* UIViewExtension.swift */; };
+		29CC3B95206EE3E10083F308 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29CC3B94206EE3E10083F308 /* Media.xcassets */; };
 		A2783626206E9A5A002FE8E5 /* AIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A278361C206E9A59002FE8E5 /* AIKit.framework */; };
 		A278362B206E9A5A002FE8E5 /* AIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278362A206E9A5A002FE8E5 /* AIKitTests.swift */; };
 		A278362D206E9A5A002FE8E5 /* AIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A278361F206E9A59002FE8E5 /* AIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,6 +62,9 @@
 /* Begin PBXFileReference section */
 		29CC3B8A206EB6E60083F308 /* AIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIViewController.swift; sourceTree = "<group>"; };
 		29CC3B8C206EB70B0083F308 /* AIKit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AIKit.storyboard; sourceTree = "<group>"; };
+		29CC3B8E206EBC0A0083F308 /* BlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewController.swift; sourceTree = "<group>"; };
+		29CC3B90206EBC310083F308 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		29CC3B94206EE3E10083F308 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A278361C206E9A59002FE8E5 /* AIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A278361F206E9A59002FE8E5 /* AIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIKit.h; sourceTree = "<group>"; };
 		A2783620206E9A59002FE8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,8 +140,11 @@
 				A2783653206E9E3D002FE8E5 /* AIButton.swift */,
 				A2783655206EB51B002FE8E5 /* AIConfiguration.swift */,
 				A2783657206EB565002FE8E5 /* AIResponse.swift */,
+				29CC3B8E206EBC0A0083F308 /* BlurViewController.swift */,
 				29CC3B8A206EB6E60083F308 /* AIViewController.swift */,
+				29CC3B90206EBC310083F308 /* UIViewExtension.swift */,
 				29CC3B8C206EB70B0083F308 /* AIKit.storyboard */,
+				29CC3B94206EE3E10083F308 /* Media.xcassets */,
 			);
 			path = AIKit;
 			sourceTree = "<group>";
@@ -281,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CC3B95206EE3E10083F308 /* Media.xcassets in Resources */,
 				29CC3B8D206EB70B0083F308 /* AIKit.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,8 +320,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2783658206EB565002FE8E5 /* AIResponse.swift in Sources */,
+				29CC3B8F206EBC0A0083F308 /* BlurViewController.swift in Sources */,
 				A2783637206E9AD6002FE8E5 /* AIKit.swift in Sources */,
 				A2783656206EB51B002FE8E5 /* AIConfiguration.swift in Sources */,
+				29CC3B91206EBC310083F308 /* UIViewExtension.swift in Sources */,
 				A2783654206E9E3D002FE8E5 /* AIButton.swift in Sources */,
 				29CC3B8B206EB6E60083F308 /* AIViewController.swift in Sources */,
 			);
@@ -421,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -478,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -495,12 +507,13 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = XV8GRWN9U6;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aikit.AIKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -518,12 +531,13 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = XV8GRWN9U6;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aikit.AIKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

@@ -13,15 +13,25 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let button = createAIButton(target: self, action: #selector(didTapAIButton))
-        button.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        view.addSubview(button)
-        
     }
-    @objc
-    func didTapAIButton() -> () {
-        
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    @IBAction func didTapAIButton(_ sender: Any) {
+        let viewController = AIViewController.create(with: AIConfiguration())
+        viewController.delegate = self
+        present(viewController, animated: true) {
+            self.aiButton.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var aiButton: RoundedButton!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,5 +39,11 @@ class ViewController: UIViewController {
     }
 
 
+}
+
+extension ViewController: AIViewControllerDelegate {
+    func didDismiss() {
+        self.aiButton.isHidden = false
+    }
 }
 
