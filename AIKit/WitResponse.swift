@@ -10,17 +10,25 @@ import Foundation
 
 struct WitResponse : Decodable {
     
-    let entities: Entities
+    let entities: [String: [Entity]]
     
-    struct Entities : Decodable {
-        
-        let intent: [Intent]?
-        
-        struct Intent : Decodable {
-            let confidence: Double
-            let value: String
-        }
-        
+    struct Entity : Decodable {
+        let confidence: Double
+        let value: String
     }
+    
+    var intent: String? {
+        return entities["intent"]?.first?.value
+    }
+    
+    func firstValueFor(_ key: String) -> String? {
+        return entities[key]?.first?.value
+    }
+    
+//    struct Entities : Decodable {
+//
+//        let intent: [Entity]?
+//        let screen: [Entity]?
+//    }
     
 }
