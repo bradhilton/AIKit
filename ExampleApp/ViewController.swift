@@ -10,7 +10,9 @@ import UIKit
 import AIKit
 
 class ViewController: UIViewController {
-
+    
+//    let configuration = AIConfiguration()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

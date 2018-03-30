@@ -8,4 +8,5 @@
 
 public enum AIResponse {
     case text(String)
+    case failure
 }
