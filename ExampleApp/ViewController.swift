@@ -10,17 +10,21 @@ import UIKit
 import AIKit
 
 class ViewController: UIViewController {
-
+    
+    let configuration = AIConfiguration()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let button = createAIButton(target: self, action: #selector(didTapAIButton))
         button.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         view.addSubview(button)
-        
     }
+    
     @objc
     func didTapAIButton() -> () {
-        
+        configuration.startListeningForResponse { response in
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {

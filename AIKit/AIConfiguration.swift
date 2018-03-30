@@ -8,59 +8,88 @@
 import Speech
 
 public class AIConfiguration {
- 
-    let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)
-    let request = SFSpeechAudioBufferRecognitionRequest()
-    let audioEngine = AVAudioEngine()
-    let audioSession: AVAudioSession = {
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-            try audioSession.setMode(AVAudioSessionModeMeasurement)
-            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-        } catch {
-            print(error)
-        }
-        return audioSession
-    }()
     
-    public init () {}
+    let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)!
+    let audioEngine = AVAudioEngine()
+    var request: SFSpeechAudioBufferRecognitionRequest?
+    var task: SFSpeechRecognitionTask?
+    
+    public init() {
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSessionCategoryRecord)
+        try! audioSession.setMode(AVAudioSessionModeMeasurement)
+        try! audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+    }
     
     public func awaitForResponse(for text: String, with completion: (AIResponse) -> ()){
         completion(.text("Hello_Lorraine"))
-        
     }
-    public func requestAuthorization(){
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            switch authStatus {
+    
+    public func startListeningForResponse(with completion: @escaping (AIResponse) -> ()) {
+        switch SFSpeechRecognizer.authorizationStatus() {
+        case .authorized:
+            startRecognitionTask(with: completion)
+        case .notDetermined:
+            requestAuthorization(with: completion)
+        default:
+            completion(.failure)
+        }
+    }
+    
+    public func stopListeningForResponse() {
+        if let request = request {
+            request.endAudio()
+            self.request = nil
+        }
+        if let task = task {
+            task.cancel()
+            self.task = nil
+        }
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
+    }
+    
+    func requestAuthorization(with completion: @escaping (AIResponse) -> ()) {
+        SFSpeechRecognizer.requestAuthorization { authorizationStatus in
+            switch authorizationStatus {
             case .authorized:
-                break
-            case .denied:
-                break
-            case .restricted:
-                break
-            case .notDetermined:
-                break
+                self.startRecognitionTask(with: completion)
+            default:
+                completion(.failure)
             }
         }
     }
-    public func speech(){
-        guard let recognizer = recognizer else { return }
+    
+    func startRecognitionTask(with completion: @escaping (AIResponse) -> ()) {
+        stopListeningForResponse()
+        let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
-        
-        
-        recognizer.recognitionTask(with: request) { (result, error) in
-            
+        self.request = request
+        var timer: Timer?
+        task = recognizer.recognitionTask(with: request) { (result, error) in
+            if let result = result {
+                timer?.invalidate()
+                timer = Timer(timeInterval: 2.0, repeats: false) { _ in
+                    self.stopListeningForResponse()
+                    completion(.text(result.bestTranscription.formattedString))
+                }
+            } else {
+                completion(.failure)
+            }
         }
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.request.append(buffer)
+            request.append(buffer)
         }
-        
         audioEngine.prepare()
-        
-        try? audioEngine.start()
+        do {
+            try audioEngine.start()
+        } catch {
+            stopListeningForResponse()
+            completion(.failure)
+        }
     }
     
 }
