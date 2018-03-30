@@ -99,13 +99,17 @@ public class AIConfiguration {
         }
     }
     
-    func makeWitRequest(with text: String){
+    public func makeWitRequest(with text: String){
         let url = URL(string: "https://api.wit.ai/message")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         components.queryItems = [URLQueryItem(name: "q", value: text)]
         urlSession.dataTask(with: components.url!) { (data, response, error) in
             guard let data = data else { return }
-            
+            let decoder = JSONDecoder()
+            guard let witResponse = try? decoder.decode(WitResponse.self, from: data) else { return }
+            witResponse.entities.intent?.forEach({ (intent) in
+              print(intent)
+            })
         }
     }
     

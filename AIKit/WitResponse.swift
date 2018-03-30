@@ -8,12 +8,15 @@
 
 import Foundation
 
-struct WitResponse {
+struct WitResponse : Decodable {
     
-    struct Entities {
+    let entities: Entities
+    
+    struct Entities : Decodable {
+        
         let intent: [Intent]?
         
-        struct Intent {
+        struct Intent : Decodable {
             let confidence: Double
             let value: String
         }
