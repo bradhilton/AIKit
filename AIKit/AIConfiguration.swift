@@ -10,6 +10,10 @@ public class AIConfiguration {
  
     public init () {}
     
+    public func awaitForResponse(for text: String, with completion: (AIResponse) -> ()){
+        completion(.text("Hello_Lorraine"))
+        
+    }
     
     
     
