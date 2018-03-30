@@ -7,10 +7,17 @@
 //
 import Speech
 
+let urlSessionConfiguration : URLSessionConfiguration = {
+    let configuration = URLSessionConfiguration()
+    configuration.httpAdditionalHeaders = ["Authorization" : "NLGR5H26PCJR6HQQVAUOKVIWVMU4I55W"]
+    return configuration
+} ()
+
 public class AIConfiguration {
     
     let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)!
     let audioEngine = AVAudioEngine()
+    let urlSession = URLSession(configuration: urlSessionConfiguration)
     var request: SFSpeechAudioBufferRecognitionRequest?
     var task: SFSpeechRecognitionTask?
     
@@ -89,6 +96,16 @@ public class AIConfiguration {
         } catch {
             stopListeningForResponse()
             completion(.failure)
+        }
+    }
+    
+    func makeWitRequest(with text: String){
+        let url = URL(string: "https://api.wit.ai/message")!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        components.queryItems = [URLQueryItem(name: "q", value: text)]
+        urlSession.dataTask(with: components.url!) { (data, response, error) in
+            guard let data = data else { return }
+            
         }
     }
     
