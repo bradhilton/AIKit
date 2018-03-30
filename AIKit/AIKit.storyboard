@@ -125,6 +125,7 @@
                     <connections>
                         <outlet property="aiView" destination="kXs-ab-FiQ" id="jl0-8a-hi7"/>
                         <outlet property="aiViewHeight" destination="Uj6-9E-65L" id="vKa-FP-3JU"/>
+                        <outlet property="animationContainer" destination="U0E-Ze-W4p" id="mas-ia-CDY"/>
                         <outlet property="blurView" destination="rIM-Vj-GH0" id="u4W-Yn-duf"/>
                     </connections>
                 </viewController>

@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Lottie
 
 public protocol AIViewControllerDelegate: class {
     func didDismiss()
 }
 
 public class AIViewController: UIViewController {
+    
+    
+    @IBOutlet weak var animationContainer: UIView!
+    
+    private var loadingAnimation: LOTAnimationView?
     
     public weak var delegate: AIViewControllerDelegate?
     
@@ -46,6 +52,16 @@ public class AIViewController: UIViewController {
         super.viewDidLoad()
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         blurView.effect = blurEffect
+        
+        loadingAnimation = LOTAnimationView(name: "Voice", bundle: Bundle(for: AIViewController.self))
+        if let animation = loadingAnimation {
+            animationContainer.addSubview(animation)
+            
+            animation.contentMode = .scaleToFill
+            animation.pinSidesToSuperView()
+            animation.loopAnimation = true
+            animation.play()
+        }
     }
     
     @IBAction func didTapCloseButton(_ sender: Any) {
