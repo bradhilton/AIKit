@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="JudgeTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="124" id="cA8-rL-8gd" customClass="JudgeTableViewCell" customModule="StartupWeekend" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="124"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cA8-rL-8gd" id="1UP-oo-0AX">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="123.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Judge Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2S-I2-zda">
+                        <rect key="frame" x="130" y="11" width="147" height="29"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lpx-8a-WyK">
+                        <rect key="frame" x="20" y="11" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="KnG-tM-NM8"/>
+                            <constraint firstAttribute="height" constant="100" id="dUO-Iy-fdK"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FT-J7-AtA">
+                        <rect key="frame" x="130" y="50" width="243" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4FT-J7-AtA" firstAttribute="top" secondItem="k2S-I2-zda" secondAttribute="bottom" constant="10" id="0fB-dM-TJS"/>
+                    <constraint firstItem="k2S-I2-zda" firstAttribute="leading" secondItem="lpx-8a-WyK" secondAttribute="trailing" constant="10" id="KgV-mB-HFd"/>
+                    <constraint firstItem="k2S-I2-zda" firstAttribute="top" secondItem="lpx-8a-WyK" secondAttribute="top" id="S6p-hw-74F"/>
+                    <constraint firstItem="lpx-8a-WyK" firstAttribute="top" secondItem="1UP-oo-0AX" secondAttribute="topMargin" id="UL0-Pv-AI6"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4FT-J7-AtA" secondAttribute="bottom" constant="42.5" id="UOd-Rh-KmN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4FT-J7-AtA" secondAttribute="trailing" id="aiG-Me-7Lo"/>
+                    <constraint firstItem="lpx-8a-WyK" firstAttribute="leading" secondItem="1UP-oo-0AX" secondAttribute="leadingMargin" id="pBl-ub-mSz"/>
+                    <constraint firstItem="4FT-J7-AtA" firstAttribute="leading" secondItem="k2S-I2-zda" secondAttribute="leading" id="pcf-ec-TCO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bioLabel" destination="4FT-J7-AtA" id="4ZX-AX-p2A"/>
+                <outlet property="judgeImageView" destination="lpx-8a-WyK" id="lJx-5i-keJ"/>
+                <outlet property="nameLabel" destination="k2S-I2-zda" id="Lx8-Ue-ZCy"/>
+            </connections>
+            <point key="canvasLocation" x="85.5" y="-5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -16,17 +16,14 @@ public protocol AIViewControllerDelegate: class {
 public class AIViewController: UIViewController {
     
     
-    @IBOutlet weak var animationContainer: UIView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    private var loadingAnimation: LOTAnimationView?
-    
+    @IBOutlet weak var waveView: WaveView!
     public weak var delegate: AIViewControllerDelegate?
     
     private var configuration: AIConfiguration!
     
     @IBOutlet weak var aiViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var aiViewWidth: NSLayoutConstraint!
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     @IBOutlet weak var aiView: UIView!
@@ -34,7 +31,7 @@ public class AIViewController: UIViewController {
     public override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+        
     public class func create(with configuration: AIConfiguration) -> AIViewController {
         let storyboard = UIStoryboard(name: "AIKit", bundle: Bundle(for: AIViewController.self))
         let viewController = storyboard.instantiateInitialViewController() as! AIViewController
@@ -47,39 +44,12 @@ public class AIViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        waveView.update(with: 0.5)
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: .UIKeyboardDidHide, object: nil)
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-        blurView.effect = blurEffect
-        
-        loadingAnimation = LOTAnimationView(name: "Voice", bundle: Bundle(for: AIViewController.self))
-        if let animation = loadingAnimation {
-            animationContainer.addSubview(animation)
-            
-            animation.contentMode = .scaleToFill
-            animation.pinSidesToSuperView()
-            animation.loopAnimation = true
-            animation.play()
-        }
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrameTemp = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect {
-            let newInsets = UIEdgeInsetsMake(0, 0, keyboardFrameTemp.height, 0)
-            scrollView.contentInset = newInsets
-            scrollView.scrollIndicatorInsets = newInsets
-        }
-    }
-    
-    @objc private func keyboardDidHide(notification: NSNotification) {
-        scrollView.contentInset = UIEdgeInsets.zero
-        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     @IBAction func didTapCloseButton(_ sender: Any) {
@@ -104,24 +74,49 @@ class AIViewControllerAnimationController: NSObject, UIViewControllerAnimatedTra
             transitionContext.containerView.addSubview(toViewController.view)
         }
         
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            if let toViewController = toViewController as? AIViewController {
+        if let toViewController = toViewController as? AIViewController {
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                 toViewController.view.alpha = 1.0
-
-            } else if let fromViewController = fromViewController as? AIViewController {
-                fromViewController.view.alpha = 0.0
-            }
-        }) { (_) in
-            if let fromViewController = fromViewController as? AIViewController  {
-                fromViewController.view.removeFromSuperview()
-            } else if let toViewController = toViewController as? AIViewController {
-                UIView.animate(withDuration: 0.2, animations: {
-                    toViewController.aiView.alpha = 1.0
+            }) { (_) in
+                UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                    toViewController.aiViewHeight.constant = 600
+                    toViewController.aiViewWidth.constant = toViewController.view.frame.size.width*0.9
                     toViewController.view.layoutSubviews()
+                }, completion: nil)
+            }
+        } else if let fromViewController = fromViewController as? AIViewController {
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                fromViewController.aiViewHeight.constant = 0
+                fromViewController.aiViewWidth.constant = 0
+                toViewController.view.layoutSubviews()
+            }) { (_) in
+                UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
+                    fromViewController.view.alpha = 0.0
                 })
-                
             }
         }
+//        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+//            if let toViewController = toViewController as? AIViewController {
+//                toViewController.view.alpha = 1.0
+//
+//            } else if let fromViewController = fromViewController as? AIViewController {
+//                UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+//                    fromViewController.aiViewHeight.constant = 0
+//                    fromViewController.aiViewWidth.constant = 0
+//                    toViewController.view.layoutSubviews()
+//                }, completion: nil)
+//            }
+//        }) { (_) in
+//            if let fromViewController = fromViewController as? AIViewController  {
+//                fromViewController.view.removeFromSuperview()
+//            } else if let toViewController = toViewController as? AIViewController {
+//                UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+//                    toViewController.aiViewHeight.constant = 600
+//                    toViewController.aiViewWidth.constant = toViewController.view.frame.size.width*0.9
+//                    toViewController.view.layoutSubviews()
+//                }, completion: nil)
+//            }
+//        }
         
         transitionContext.completeTransition(true)
     }
