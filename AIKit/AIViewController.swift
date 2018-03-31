@@ -18,6 +18,7 @@ public class AIViewController: UIViewController {
     
     @IBOutlet weak var animationContainer: UIView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     private var loadingAnimation: LOTAnimationView?
     
     public weak var delegate: AIViewControllerDelegate?
@@ -50,6 +51,10 @@ public class AIViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: .UIKeyboardDidHide, object: nil)
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         blurView.effect = blurEffect
         
@@ -62,6 +67,19 @@ public class AIViewController: UIViewController {
             animation.loopAnimation = true
             animation.play()
         }
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrameTemp = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+            let newInsets = UIEdgeInsetsMake(0, 0, keyboardFrameTemp.height, 0)
+            scrollView.contentInset = newInsets
+            scrollView.scrollIndicatorInsets = newInsets
+        }
+    }
+    
+    @objc private func keyboardDidHide(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     @IBAction func didTapCloseButton(_ sender: Any) {
