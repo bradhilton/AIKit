@@ -24,13 +24,14 @@ class WaveView: UIView {
     @IBInspectable var phaseShift: CGFloat = -0.15
     
     func update(with level: CGFloat) {
+        guard !level.isNaN, level.isFinite else { return }
         phase += phaseShift
         let newAmplitude = max(level, idleAmplitude)
         let currentAmplitude = amplitude
         
         var i = amplitude
         guard newAmplitude > amplitude else {
-            
+
             for j in 0..<Int((amplitude - newAmplitude) * 10000) {
                 amplitude = CGFloat(i)
                 i = i - CGFloat(j)*0.0001
@@ -40,8 +41,8 @@ class WaveView: UIView {
             setNeedsDisplay()
             return
         }
-        
-        
+
+
         for j in Int(currentAmplitude * 10000)..<Int(newAmplitude * 10000) {
             amplitude = i + CGFloat(j)*0.0001
             setNeedsDisplay()

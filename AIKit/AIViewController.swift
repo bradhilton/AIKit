@@ -38,6 +38,7 @@ public class AIViewController: UIViewController {
         viewController.configuration = configuration
         viewController.transitioningDelegate = viewController
         viewController.modalPresentationStyle = .custom
+        viewController.configuration.delegate = viewController
         
         return viewController
     }
@@ -45,6 +46,7 @@ public class AIViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         waveView.update(with: 0.5)
+        configuration.startListeningForResponse()
     }
     
     public override func viewDidLoad() {
@@ -59,6 +61,36 @@ public class AIViewController: UIViewController {
             }
         }
     }
+}
+
+extension AIViewController: AIConfigurationDelegate {
+    
+    func configuration(_ configuration: AIConfiguration, userInputUpdated input: String) {
+        
+    }
+    
+    func configurationStartedLoadingResponse(_ configuration: AIConfiguration) {
+        
+    }
+    
+    func configuration(_ configuration: AIConfiguration, didReceiveResponse response: AIResponse) {
+        
+    }
+    
+    func configuration(_ configuration: AIConfiguration, updatedPowerLevel power: Float) {
+//        print(power)
+        DispatchQueue.main.async {
+            self.waveView.update(with: self.normalizedPowerLevel(from: CGFloat(power)))
+        }
+    }
+    
+    private func normalizedPowerLevel(from decibels: CGFloat) -> CGFloat {
+        if decibels < -45.0 || decibels == 0.0 {
+            return 0.0
+        }
+        return CGFloat(powf((powf(10.0, Float(0.065 * decibels)) - powf(10.0, 0.05 * -60.0)) * (1.0 / (1.0 - powf(10.0, 0.05 * -60.0))), 1.0 / 2.0))
+    }
+    
 }
 
 class AIViewControllerAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
