@@ -70,7 +70,6 @@ public class AIViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
-        
     }
     
     @IBAction func didTapCloseButton(_ sender: Any) {
@@ -105,6 +104,7 @@ extension AIViewController: AIConfigurationDelegate {
             self.listenButton.isHidden = false
             self.responseLabel.text = response.message
             self.tableView.sections = response.sections
+            self.tableView.flashScrollIndicators()
         }
     }
     

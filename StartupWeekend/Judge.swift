@@ -97,7 +97,7 @@ enum Judge {
         case .quinn:
             return "manages the value of the Downtown Provo area. He assists in networking and addressing needs of the business community and the visitors experience downtown."
         case .seth:
-            return "is the founder of Stotion. He has championed a powerful approach to design thinking and strategy. He demonstrates expertise in all things design, and a robust comprehension of business strategy, technology, web development, and behavioral psychology."
+            return "is the founder of Stotion. He demonstrates expertise in all things design, and a robust comprehension of business strategy, technology, web development, and behavioral psychology."
         }
     }
     

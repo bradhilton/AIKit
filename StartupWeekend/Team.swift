@@ -38,8 +38,10 @@ enum Team {
     case givv
     case mayday
     case pplCloud
+    case karear
+    case volunteerSync
     
-    static var all: [Team] = [.aiKit, .curbAppeal, .givv, .mayday, .pplCloud]
+    static var all: [Team] = [.aiKit, .curbAppeal, .givv, .karear, .mayday, .pplCloud, .volunteerSync]
     
     var name: String {
         switch self {
@@ -53,6 +55,10 @@ enum Team {
             return "Mayday"
         case .pplCloud:
             return "PPL Cloud"
+        case .karear:
+            return "Karear"
+        case .volunteerSync:
+            return "Volunteer Sync"
         }
     }
     
@@ -68,6 +74,10 @@ enum Team {
             return "An Anti Bullying App"
         case .pplCloud:
             return "A personal server"
+        case .karear:
+            return "Software solution to help job searchers tap into the hidden job market"
+        case .volunteerSync:
+            return "Service made Simple"
         }
     }
     
@@ -78,11 +88,15 @@ enum Team {
         case .curbAppeal:
             return "a real estate app."
         case .givv:
-            return "the Go Fund Me for charitable payroll deductions in the workplace"
+            return "the Go Fund Me for charitable payroll deductions in the workplace."
         case .mayday:
-            return "an Anti Bullying App"
+            return "an anti bullying app."
         case .pplCloud:
             return "a personal server"
+        case .karear:
+            return "a software solution to help job searchers tap into the hidden job market"
+        case .volunteerSync:
+            return "service made simple."
         }
     }
 }

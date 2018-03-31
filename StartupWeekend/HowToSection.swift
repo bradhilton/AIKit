@@ -14,7 +14,7 @@ func howToSection() -> Section {
         section.rows = [
             howToRow(title: "Tell me about Startup Weekend.", image: nil),
             howToRow(title: "What's the competion?", image: nil),
-            howToRow(title: "Who is judging tonight?", image: nil),
+            howToRow(title: "Who are the judges?", image: nil),
             howToRow(title: "Can you help me with my pitch deck?", image: nil)
         ]
     }

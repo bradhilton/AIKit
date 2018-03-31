@@ -17,12 +17,13 @@ extension AIResponse {
         }
         switch intent {
         case "howDoIUseYou":
-            self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend")
+            self = AIResponse(message: "Try asking me questions like this:", sections: [howToSection()])
         case "sendMessage":
             guard let recipient = witResponse.firstValueFor("recipient") else {
                 self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
                 return
             }
+
             self = AIResponse(message: "Okay, I'll send a message to \(recipient).")
 //        case "goto":
 //            guard let appPage = witResponse.firstValueFor("appPage") else {
@@ -39,6 +40,8 @@ extension AIResponse {
 //            default:
 //                self = AIResponse(message: "I can't find\(appPage)")
 //            }
+        case "advice":
+            self = AIResponse(message: "Validate! Validate! Validate!")
         case "show":
             guard let object = witResponse.firstValueFor("object") else {
                 self = AIResponse(message: "What do you want me to show?", needsFollowUp: true)
@@ -69,6 +72,10 @@ extension AIResponse {
                 self = AIResponse(message: "Here is some info about \(Team.mayday.name)", sections:[section(with: Team.mayday)])
             case "team_Givv":
                 self = AIResponse(message: "Here is some info about \(Team.givv.name)", sections:[section(with: Team.givv)])
+            case "team_Karear":
+                self = AIResponse(message: "Here is some info about \(Team.karear.name)", sections:[section(with: Team.karear)])
+            case "team_VolunteerSync":
+                self = AIResponse(message: "Here is some info about \(Team.volunteerSync.name)", sections:[section(with: Team.volunteerSync)])
             case "amy":
                 self = AIResponse(message: "Here is some info about \(Judge.amy.name)", sections:[section(with: Judge.amy)])
             case "john":
@@ -128,6 +135,10 @@ extension AIResponse {
                 self = AIResponse(message: "\(Team.mayday.name) is \(Team.mayday.aiDescription)")
             case "team_Givv":
                 self = AIResponse(message: "\(Team.givv.name) is \(Team.givv.aiDescription)")
+            case "team_Karear":
+                self = AIResponse(message: "\(Team.karear.name) is \(Team.karear.aiDescription)")
+            case "team_VolunteerSync":
+                self = AIResponse(message: "\(Team.volunteerSync.name) is \(Team.volunteerSync.aiDescription)")
             case "amy":
                 self = AIResponse(message: "\(Judge.amy.name) \(Judge.amy.aiDescription)")
             case "john":
