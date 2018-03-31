@@ -22,6 +22,7 @@ public class AIConfiguration {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
     private var audioPlayer: AVAudioPlayer?
+    public var appName: String?
     
     public init() {
         let audioSession = AVAudioSession.sharedInstance()
@@ -120,7 +121,7 @@ public class AIConfiguration {
                 self.makeGoogleRequest(with: .failure)
                 return
             }
-            guard let aiResponse = AIResponse(with: witResponse) else {
+            guard let aiResponse = AIResponse(with: witResponse, and: self) else {
                 self.makeGoogleRequest(with:
                     self.delegate?.configuration(self, aiResponseFor: witResponse) ?? .failure
                 )
