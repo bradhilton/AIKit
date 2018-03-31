@@ -1,6 +1,0 @@
-framework module XTable {
-  umbrella header "XTable-umbrella.h"
-
-  export *
-  module * { export * }
-}
