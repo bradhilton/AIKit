@@ -59,6 +59,21 @@ enum Judge {
             return "Executive Director at Downtown Provo Inc."
         }
     }
+    
+    var aiDescription: String {
+        switch self {
+        case .amy:
+            return "is the Executive Director and a co-founder at the newest business accelerator in Provo, Ut RevRoad."
+        case .john:
+            return "is a co-founder of several ventures leading to high-multiple exits, an active angel investor investor, startup mentor to thousands of entrepreneurs, a professor and executive."
+        case .peter:
+            return "is a JD / MBA with a well rounded business background in business consulting (run a business and new product accelerator that over 220 companies applied for in 2014), in International Business (Corporate Counsel, Regulatory Compliance, and Financial Management), Real Estate (Commercial Leasing, Title Insurance, and Escrow), and Litigation (Antitrust, Consumer Protection, Securities, Family Law, Probate)."
+        case .quinn:
+            return "manages the value of the Downtown Provo area. He assists in networking and addressing needs of the business community and the visitors experience downtown. He doesn't run any big events himself but helps facilitate events and success of all the great programs that are already here."
+        case .seth:
+            return ""
+        }
+    }
     var bio: String {
         switch self {
         case .john:

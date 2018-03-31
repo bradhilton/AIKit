@@ -103,17 +103,17 @@ extension AIResponse {
             case "eventLocation":
                 self = AIResponse(message: "")
             case "team_AIKit":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Team.aiKit.name) is \(Team.aiKit.aiDescription)")
             case "team_PPLCloud":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Team.pplCloud.name) is \(Team.pplCloud.aiDescription)")
             case "team_CurbAppeal":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Team.curbAppeal.name) is \(Team.curbAppeal.aiDescription)")
             case "team_Mayday":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Team.mayday.name) is \(Team.mayday.aiDescription)")
             case "team_Givv":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Team.givv.name) is \(Team.givv.aiDescription)")
             case "amy":
-                self = AIResponse(message: "")
+                self = AIResponse(message: "\(Judge.amy.name) is a judge")
             case "john":
                 self = AIResponse(message: "")
             case "seth":

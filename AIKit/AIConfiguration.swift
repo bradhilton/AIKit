@@ -127,7 +127,7 @@ public class AIConfiguration {
                 let input = result.bestTranscription.formattedString
                 self.delegate?.configuration(self, userInputUpdated: input)
                 timer?.invalidate()
-                timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.stopListeningForResponse()
                     self.makeWitRequest(with: input)
                 }
