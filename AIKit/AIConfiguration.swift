@@ -9,7 +9,7 @@ import Speech
 
 let urlSessionConfiguration : URLSessionConfiguration = {
     let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = ["Authorization" : "NLGR5H26PCJR6HQQVAUOKVIWVMU4I55W"]
+    configuration.httpAdditionalHeaders = ["Authorization" : "Bearer NLGR5H26PCJR6HQQVAUOKVIWVMU4I55W"]
     return configuration
 } ()
 
@@ -79,7 +79,7 @@ public class AIConfiguration {
                 timer?.invalidate()
                 timer = Timer(timeInterval: 2.0, repeats: false) { _ in
                     self.stopListeningForResponse()
-                    completion(.text(result.bestTranscription.formattedString))
+                    self.makeWitRequest(with: result.bestTranscription.formattedString, and: completion)
                 }
             } else {
                 completion(.failure)
@@ -99,14 +99,15 @@ public class AIConfiguration {
         }
     }
     
-    func makeWitRequest(with text: String){
+    public func makeWitRequest(with text: String, and completion: @escaping (AIResponse) -> ()){
         let url = URL(string: "https://api.wit.ai/message")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         components.queryItems = [URLQueryItem(name: "q", value: text)]
         urlSession.dataTask(with: components.url!) { (data, response, error) in
             guard let data = data else { return }
-            
-        }
+            let decoder = JSONDecoder()
+            guard let witResponse = try? decoder.decode(WitResponse.self, from: data) else { return }
+        }.resume()
     }
     
 }
