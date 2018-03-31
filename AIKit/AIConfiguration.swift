@@ -21,10 +21,11 @@ public class AIConfiguration {
     let urlSession = URLSession(configuration: urlSessionConfiguration)
     var request: SFSpeechAudioBufferRecognitionRequest?
     var task: SFSpeechRecognitionTask?
+    var audioPlayer: AVAudioPlayer?
     
     public init() {
         let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setCategory(AVAudioSessionCategoryRecord)
+        try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try! audioSession.setMode(AVAudioSessionModeMeasurement)
         try! audioSession.setActive(true, with: .notifyOthersOnDeactivation)
     }
@@ -91,6 +92,9 @@ public class AIConfiguration {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            if let power = buffer.power {
+                self.delegate?.configuration(self, updatedPowerLevel: power)
+            }
             request.append(buffer)
         }
         audioEngine.prepare()
@@ -115,4 +119,32 @@ public class AIConfiguration {
         }.resume()
     }
     
+    public func makeGoogleRequest(with text: String) {
+        let url = URL(string: "https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=AIzaSyDOx2NKLSBmZx-cjR2Oj3vyI9PIp2CSMMQ")!
+        var request = URLRequest(url: url)
+        let encoder = JSONEncoder()
+        request.httpBody = try? encoder.encode(GoogleRequest(input: .init(text: text)))
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = ["content-type": "application/json"]
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            guard let response = try? decoder.decode(GoogleResponse.self, from: data) else { return }
+            guard let audioData = Data(base64Encoded: response.audioContent) else { return }
+            self.playAudioData(audioData)
+        }.resume()
+    }
+    
+    public func playAudioData(_ data: Data) {
+        do {
+            self.audioPlayer = try AVAudioPlayer(data: data)
+            self.audioPlayer?.play()
+        } catch {}
+    }
+    
 }
+
+
+
+
+

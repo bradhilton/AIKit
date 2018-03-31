@@ -11,10 +11,11 @@ import AIKit
 
 class ViewController: UIViewController {
     
-//    let configuration = AIConfiguration()
+    let configuration = AIConfiguration()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration.makeGoogleRequest(with: "There are 6 other teams! Here they are!")
     }
     
     override var prefersStatusBarHidden: Bool {

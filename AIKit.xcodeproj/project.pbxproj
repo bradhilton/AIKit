@@ -31,6 +31,9 @@
 		A2783658206EB565002FE8E5 /* AIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783657206EB565002FE8E5 /* AIResponse.swift */; };
 		A2949235206EEC7300DBDD73 /* WitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949234206EEC7300DBDD73 /* WitResponse.swift */; };
 		A2949237206F209700DBDD73 /* AIConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949236206F209700DBDD73 /* AIConfigurationDelegate.swift */; };
+		A2949239206F26A100DBDD73 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949238206F26A100DBDD73 /* GoogleRequest.swift */; };
+		A294923B206F2C1D00DBDD73 /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294923A206F2C1D00DBDD73 /* GoogleResponse.swift */; };
+		A294923D206F409500DBDD73 /* AVAudioPCMBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294923C206F409500DBDD73 /* AVAudioPCMBuffer.swift */; };
 		B1E5AE366B2EEDD796245618 /* Pods_AIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503606247DF07E105FC79E0B /* Pods_AIKitTests.framework */; };
 		F8A40807C0629AA6DAF41E4C /* Pods_AIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6566AF06F14A764AB09D9F15 /* Pods_AIKit.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +101,9 @@
 		A2783657206EB565002FE8E5 /* AIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponse.swift; sourceTree = "<group>"; };
 		A2949234206EEC7300DBDD73 /* WitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitResponse.swift; sourceTree = "<group>"; };
 		A2949236206F209700DBDD73 /* AIConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIConfigurationDelegate.swift; sourceTree = "<group>"; };
+		A2949238206F26A100DBDD73 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
+		A294923A206F2C1D00DBDD73 /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
+		A294923C206F409500DBDD73 /* AVAudioPCMBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPCMBuffer.swift; sourceTree = "<group>"; };
 		AFA66D6BF98FC207069CC851 /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B2CE6FC389BC1B7A06BD62DF /* Pods-AIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIKit/Pods-AIKit.release.xcconfig"; sourceTree = "<group>"; };
 		F62FB8149A70638D4EF812B3 /* Pods-ExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 				29CC3B8C206EB70B0083F308 /* AIKit.storyboard */,
 				29CC3B94206EE3E10083F308 /* Media.xcassets */,
 				A2949234206EEC7300DBDD73 /* WitResponse.swift */,
+				A2949238206F26A100DBDD73 /* GoogleRequest.swift */,
+				A294923A206F2C1D00DBDD73 /* GoogleResponse.swift */,
+				A294923C206F409500DBDD73 /* AVAudioPCMBuffer.swift */,
 			);
 			path = AIKit;
 			sourceTree = "<group>";
@@ -519,12 +528,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A294923D206F409500DBDD73 /* AVAudioPCMBuffer.swift in Sources */,
 				A2783658206EB565002FE8E5 /* AIResponse.swift in Sources */,
 				29CC3B8F206EBC0A0083F308 /* BlurViewController.swift in Sources */,
+				A2949239206F26A100DBDD73 /* GoogleRequest.swift in Sources */,
 				A2783637206E9AD6002FE8E5 /* AIKit.swift in Sources */,
 				A2783656206EB51B002FE8E5 /* AIConfiguration.swift in Sources */,
 				A2949237206F209700DBDD73 /* AIConfigurationDelegate.swift in Sources */,
 				29CC3B91206EBC310083F308 /* UIViewExtension.swift in Sources */,
+				A294923B206F2C1D00DBDD73 /* GoogleResponse.swift in Sources */,
 				A2783654206E9E3D002FE8E5 /* AIButton.swift in Sources */,
 				29CC3B8B206EB6E60083F308 /* AIViewController.swift in Sources */,
 				A2949235206EEC7300DBDD73 /* WitResponse.swift in Sources */,
