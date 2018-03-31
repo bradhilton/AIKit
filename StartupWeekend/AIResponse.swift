@@ -16,8 +16,8 @@ extension AIResponse {
             return
         }
         switch intent {
-        case "tellJoke":
-            self = AIResponse(message: "Two men walked into a bar.")
+        case "HowDoIUseYou":
+            self = AIResponse(message: "Ask me to show you or tell you about anything in startupWeekend")
         case "sendMessage":
             guard let recipient = witResponse.firstValueFor("recipient") else {
                 self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
@@ -51,6 +51,34 @@ extension AIResponse {
             case "judges":
                 //Displays the list of all judge objects
                 self = AIResponse(message: "Here are the Judges!", sections: [])
+            case "startupWeekend":
+                self = AIResponse(message: "")
+            case "app":
+                self = AIResponse(message: "")
+            case "eventDate":
+                self = AIResponse(message: "")
+            case "eventLocation":
+                self = AIResponse(message: "")
+            case "team_AIKit":
+                self = AIResponse(message: "")
+            case "team_PPLCloud":
+                self = AIResponse(message: "")
+            case "team_CurbAppeal":
+                self = AIResponse(message: "")
+            case "team_Mayday":
+                self = AIResponse(message: "")
+            case "team_Givv":
+                self = AIResponse(message: "")
+            case "amy":
+                self = AIResponse(message: "")
+            case "john":
+                self = AIResponse(message: "")
+            case "seth":
+                self = AIResponse(message: "")
+            case "quinn":
+                self = AIResponse(message: "")
+            case "peter":
+                self = AIResponse(message: "")
             default:
                 self = AIResponse(message: "I can't find\(object)")
             }

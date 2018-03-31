@@ -44,8 +44,8 @@ extension AIResponse {
             self = AIResponse(message: "Goodbye.")
         case "sayHello":
             self = AIResponse(message: "Hello.")
-        case "howDoIUseYou":
-            self = AIResponse(message: "Ask me questions about \(appName) or give me commands")
+        //case "howDoIUseYou":
+            //self = AIResponse(message: "Ask me questions about \(appName) or give me commands")
         default:
             return nil
         }
