@@ -51,7 +51,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>Enable speech recognition for advanced AI capabilities.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Enable speech recognition for advanced AI capabilities.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Startup Weekend needs to access your microphone to use the assistant.</string>
 </dict>
 </plist>

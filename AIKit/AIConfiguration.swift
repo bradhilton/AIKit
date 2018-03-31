@@ -200,7 +200,10 @@ public class AIConfiguration {
     
     private func playAudioData(_ data: Data) {
         do {
+            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
             self.audioPlayer = try AVAudioPlayer(data: data)
+            self.audioPlayer?.prepareToPlay()
+            self.audioPlayer?.volume = 1
             self.audioPlayer?.play()
         } catch {}
     }
