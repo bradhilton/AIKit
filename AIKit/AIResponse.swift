@@ -8,6 +8,12 @@
 
 import XTable
 
+let jokes = [
+    "If I got 50 cents for every failed math exam, I’d have $ 6.30 now.",
+    "The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed."
+    
+]
+
 public struct AIResponse {
     public let message: String
     public let needsFollowUp: Bool
@@ -31,7 +37,7 @@ extension AIResponse {
         case "howSmartAreYou":
             self = AIResponse(message: "I know enough to help you with \(appName).")
         case "tellJoke":
-            self = AIResponse(message: "Two men walked into a bar.")
+            self = AIResponse(message: "")
         case "whoAmI":
             self = AIResponse(message: "The User.")
         case "howAreYouDoing":

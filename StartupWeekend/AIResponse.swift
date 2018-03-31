@@ -18,12 +18,12 @@ extension AIResponse {
         switch intent {
         case "howDoIUseYou":
             self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend")
-        case "sendMessage":
-            guard let recipient = witResponse.firstValueFor("recipient") else {
-                self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
-                return
-            }
-            self = AIResponse(message: "Okay, I'll send a message to \(recipient).")
+//        case "sendMessage":
+//            guard let recipient = witResponse.firstValueFor("recipient") else {
+//                self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
+//                return
+//            }
+//            self = AIResponse(message: "Okay, I'll send a message to \(recipient).")
 //        case "goto":
 //            guard let appPage = witResponse.firstValueFor("appPage") else {
 //                self = AIResponse(message: "Where do you want to go?", needsFollowUp: true)
