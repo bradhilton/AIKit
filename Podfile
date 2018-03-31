@@ -7,6 +7,7 @@ target 'AIKit' do
 
   # Pods for AIKit
   pod 'lottie-ios'
+  pod 'XTable'
 
   target 'AIKitTests' do
     inherit! :search_paths

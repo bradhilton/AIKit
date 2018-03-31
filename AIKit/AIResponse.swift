@@ -6,48 +6,22 @@
 //  Copyright © 2018 AIKit. All rights reserved.
 //
 
-public enum AIResponse {
-    case text(String)
-    case navigate(Screen)
-    case show(Screen)
-    case help
-    case failure
-    
-    init(witResponse: WitResponse) {
-        guard let intent = witResponse.intent else {
-            self = .failure
-            return
-        }
-        switch intent {
-        case "navigate":
-            guard let screen = witResponse.firstValueFor("screen").flatMap(Screen.init) else {
-                self = .failure
-                return
-            }
-            self = .navigate(screen)
-//        case "show" where let screen = witResponse.firstValueFor("screen").flatMap({ Screen(rawValue: $0.value) }):
-//            self = .show(screen)
-        case "help":
-            self = .help
-        default:
-            self = .failure
-        }
-        if intent == "navigate",
-            let screen = witResponse.entities["screen"]?.first.flatMap({ Screen(rawValue: $0.value) }) {
-            self = .show(screen)
-        }
-        else if intent == "show",
-            let screen = witResponse.entities["screen"]?.first.flatMap({ Screen(rawValue: $0.value) }) {
-            self = .show(screen)
-        }
-        else if intent == "help" {
-            self = .help
-        } else { self = .failure }
-        
+import XTable
+
+public struct AIResponse {
+    public let message: String
+    public let sections: [Section]
+    public init(message: String, sections: [Section] = []) {
+        self.message = message
+        self.sections = sections
     }
+    public static let failure = AIResponse(message: "I don't know how to answer that.")
 }
 
-public enum Screen : String {
-    case friendRequests
-    case posts
+extension AIResponse {
+    
+    init?(with response: WitResponse) {
+        return nil
+    }
+    
 }

@@ -9,9 +9,7 @@
 import UIKit
 import Lottie
 
-public protocol AIViewControllerDelegate: class {
-    func didDismiss()
-}
+
 
 public class AIViewController: UIViewController {
     
@@ -71,6 +69,10 @@ extension AIViewController: AIConfigurationDelegate {
     
     func configurationStartedLoadingResponse(_ configuration: AIConfiguration) {
         
+    }
+    
+    func configuration(_ configuration: AIConfiguration, aiResponseFor witResponse: WitResponse) -> AIResponse {
+        return delegate?.aiResponse(for: witResponse) ?? .failure
     }
     
     func configuration(_ configuration: AIConfiguration, didReceiveResponse response: AIResponse) {

@@ -17,8 +17,6 @@ struct GoogleRequest : Encodable {
     }
     struct AudioConfig : Encodable {
         let audioEncoding = "mp3"
-        let volumeGainDb = 6
-        let speakingRate = 1.0
     }
     struct Voice : Encodable {
         let languageCode = "en"

@@ -6,29 +6,21 @@
 //  Copyright © 2018 AIKit. All rights reserved.
 //
 
-import Foundation
-
-struct WitResponse : Decodable {
+public struct WitResponse : Decodable {
     
-    let entities: [String: [Entity]]
+    public let entities: [String: [Entity]]
     
-    struct Entity : Decodable {
-        let confidence: Double
-        let value: String
+    public struct Entity : Decodable {
+        public let confidence: Double
+        public let value: String
     }
     
-    var intent: String? {
+    public var intent: String? {
         return entities["intent"]?.first?.value
     }
     
-    func firstValueFor(_ key: String) -> String? {
+    public func firstValueFor(_ key: String) -> String? {
         return entities[key]?.first?.value
     }
-    
-//    struct Entities : Decodable {
-//
-//        let intent: [Entity]?
-//        let screen: [Entity]?
-//    }
     
 }

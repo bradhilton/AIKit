@@ -39,7 +39,6 @@
 		A2783626206E9A5A002FE8E5 /* AIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A278361C206E9A59002FE8E5 /* AIKit.framework */; };
 		A278362B206E9A5A002FE8E5 /* AIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278362A206E9A5A002FE8E5 /* AIKitTests.swift */; };
 		A278362D206E9A5A002FE8E5 /* AIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A278361F206E9A59002FE8E5 /* AIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2783637206E9AD6002FE8E5 /* AIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783636206E9AD6002FE8E5 /* AIKit.swift */; };
 		A278363F206E9C2F002FE8E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278363E206E9C2F002FE8E5 /* AppDelegate.swift */; };
 		A2783641206E9C2F002FE8E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783640206E9C2F002FE8E5 /* ViewController.swift */; };
 		A2783644206E9C2F002FE8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2783642206E9C2F002FE8E5 /* Main.storyboard */; };
@@ -47,10 +46,11 @@
 		A2783649206E9C31002FE8E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2783647206E9C31002FE8E5 /* LaunchScreen.storyboard */; };
 		A278364E206E9C3F002FE8E5 /* AIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A278361C206E9A59002FE8E5 /* AIKit.framework */; };
 		A278364F206E9C3F002FE8E5 /* AIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A278361C206E9A59002FE8E5 /* AIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A2783654206E9E3D002FE8E5 /* AIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783653206E9E3D002FE8E5 /* AIButton.swift */; };
 		A2783656206EB51B002FE8E5 /* AIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783655206EB51B002FE8E5 /* AIConfiguration.swift */; };
 		A2783658206EB565002FE8E5 /* AIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2783657206EB565002FE8E5 /* AIResponse.swift */; };
 		A2949235206EEC7300DBDD73 /* WitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949234206EEC7300DBDD73 /* WitResponse.swift */; };
+		A2949241206FA3BC00DBDD73 /* AIViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949240206FA3BC00DBDD73 /* AIViewControllerDelegate.swift */; };
+		A2949243206FA66800DBDD73 /* AIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2949242206FA66800DBDD73 /* AIResponse.swift */; };
 		B1E5AE366B2EEDD796245618 /* Pods_AIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503606247DF07E105FC79E0B /* Pods_AIKitTests.framework */; };
 		F8A40807C0629AA6DAF41E4C /* Pods_AIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6566AF06F14A764AB09D9F15 /* Pods_AIKit.framework */; };
 /* End PBXBuildFile section */
@@ -164,7 +164,6 @@
 		A2783625206E9A5A002FE8E5 /* AIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A278362A206E9A5A002FE8E5 /* AIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIKitTests.swift; sourceTree = "<group>"; };
 		A278362C206E9A5A002FE8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2783636206E9AD6002FE8E5 /* AIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIKit.swift; sourceTree = "<group>"; };
 		A278363C206E9C2F002FE8E5 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A278363E206E9C2F002FE8E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2783640206E9C2F002FE8E5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,10 +171,11 @@
 		A2783645206E9C31002FE8E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2783648206E9C31002FE8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A278364A206E9C31002FE8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2783653206E9E3D002FE8E5 /* AIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIButton.swift; sourceTree = "<group>"; };
 		A2783655206EB51B002FE8E5 /* AIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIConfiguration.swift; sourceTree = "<group>"; };
 		A2783657206EB565002FE8E5 /* AIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponse.swift; sourceTree = "<group>"; };
 		A2949234206EEC7300DBDD73 /* WitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitResponse.swift; sourceTree = "<group>"; };
+		A2949240206FA3BC00DBDD73 /* AIViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A2949242206FA66800DBDD73 /* AIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponse.swift; sourceTree = "<group>"; };
 		AFA66D6BF98FC207069CC851 /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B2CE6FC389BC1B7A06BD62DF /* Pods-AIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIKit/Pods-AIKit.release.xcconfig"; sourceTree = "<group>"; };
 		F62FB8149A70638D4EF812B3 /* Pods-ExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +265,7 @@
 				29757B46206F102C0061471B /* Assets.xcassets */,
 				29757B48206F102C0061471B /* LaunchScreen.storyboard */,
 				29757B4B206F102C0061471B /* Info.plist */,
+				A2949242206FA66800DBDD73 /* AIResponse.swift */,
 			);
 			path = StartupWeekend;
 			sourceTree = "<group>";
@@ -326,8 +327,6 @@
 				A2783620206E9A59002FE8E5 /* Info.plist */,
 				29CC3B96206EF0720083F308 /* Voice.json */,
 				29CC3B98206EF12F0083F308 /* loader1.json */,
-				A2783636206E9AD6002FE8E5 /* AIKit.swift */,
-				A2783653206E9E3D002FE8E5 /* AIButton.swift */,
 				A2783655206EB51B002FE8E5 /* AIConfiguration.swift */,
 				A2783657206EB565002FE8E5 /* AIResponse.swift */,
 				29CC3B8E206EBC0A0083F308 /* BlurViewController.swift */,
@@ -337,6 +336,7 @@
 				29CC3B8C206EB70B0083F308 /* AIKit.storyboard */,
 				29CC3B94206EE3E10083F308 /* Media.xcassets */,
 				A2949234206EEC7300DBDD73 /* WitResponse.swift */,
+				A2949240206FA3BC00DBDD73 /* AIViewControllerDelegate.swift */,
 			);
 			path = AIKit;
 			sourceTree = "<group>";
@@ -636,10 +636,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StartupWeekend/Pods-StartupWeekend-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XTable/XTable.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,10 +660,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AIKitTests/Pods-AIKitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XTable/XTable.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,10 +750,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XTable/XTable.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,6 +842,7 @@
 			files = (
 				29757B6E206F15170061471B /* Team.swift in Sources */,
 				29757B42206F102B0061471B /* JudgeViewController.swift in Sources */,
+				A2949243206FA66800DBDD73 /* AIResponse.swift in Sources */,
 				29757B70206F152F0061471B /* Judge.swift in Sources */,
 				29757B7B206F2AE30061471B /* MainViewController.swift in Sources */,
 				29757B3E206F102B0061471B /* AppDelegate.swift in Sources */,
@@ -854,10 +873,9 @@
 				29757B83206F479B0061471B /* GoogleRequest.swift in Sources */,
 				A2783658206EB565002FE8E5 /* AIResponse.swift in Sources */,
 				29CC3B8F206EBC0A0083F308 /* BlurViewController.swift in Sources */,
-				A2783637206E9AD6002FE8E5 /* AIKit.swift in Sources */,
+				A2949241206FA3BC00DBDD73 /* AIViewControllerDelegate.swift in Sources */,
 				A2783656206EB51B002FE8E5 /* AIConfiguration.swift in Sources */,
 				29757B82206F479B0061471B /* AVAudioPCMBuffer.swift in Sources */,
-				A2783654206E9E3D002FE8E5 /* AIButton.swift in Sources */,
 				29757B81206F479B0061471B /* GoogleResponse.swift in Sources */,
 				29CC3B8B206EB6E60083F308 /* AIViewController.swift in Sources */,
 				29757B79206F28DD0061471B /* UIViewExtension.swift in Sources */,

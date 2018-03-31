@@ -7,7 +7,7 @@
 //
 import Speech
 
-let urlSessionConfiguration : URLSessionConfiguration = {
+private let urlSessionConfiguration : URLSessionConfiguration = {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = ["Authorization" : "Bearer NLGR5H26PCJR6HQQVAUOKVIWVMU4I55W"]
     return configuration
@@ -16,12 +16,12 @@ let urlSessionConfiguration : URLSessionConfiguration = {
 public class AIConfiguration {
     
     weak var delegate: AIConfigurationDelegate?
-    let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)!
-    let audioEngine = AVAudioEngine()
-    let urlSession = URLSession(configuration: urlSessionConfiguration)
-    var request: SFSpeechAudioBufferRecognitionRequest?
-    var task: SFSpeechRecognitionTask?
-    var audioPlayer: AVAudioPlayer?
+    private let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)!
+    private let audioEngine = AVAudioEngine()
+    private let urlSession = URLSession(configuration: urlSessionConfiguration)
+    private var request: SFSpeechAudioBufferRecognitionRequest?
+    private var task: SFSpeechRecognitionTask?
+    private var audioPlayer: AVAudioPlayer?
     
     public init() {
         let audioSession = AVAudioSession.sharedInstance()
@@ -30,22 +30,22 @@ public class AIConfiguration {
         try! audioSession.setActive(true, with: .notifyOthersOnDeactivation)
     }
     
-    public func awaitForResponse(for text: String) {
+    func awaitForResponse(for text: String) {
         makeWitRequest(with: text)
     }
     
-    public func startListeningForResponse() {
+    func startListeningForResponse() {
         switch SFSpeechRecognizer.authorizationStatus() {
         case .authorized:
             startRecognitionTask()
         case .notDetermined:
             requestAuthorization()
         default:
-            delegate?.configuration(self, didReceiveResponse: .failure)
+            makeGoogleRequest(with: .failure)
         }
     }
     
-    public func stopListeningForResponse() {
+    func stopListeningForResponse() {
         if let request = request {
             request.endAudio()
             self.request = nil
@@ -59,18 +59,18 @@ public class AIConfiguration {
         }
     }
     
-    func requestAuthorization() {
+    private func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { authorizationStatus in
             switch authorizationStatus {
             case .authorized:
                 self.startRecognitionTask()
             default:
-                self.delegate?.configuration(self, didReceiveResponse: .failure)
+                self.makeGoogleRequest(with: .failure)
             }
         }
     }
     
-    func startRecognitionTask() {
+    private func startRecognitionTask() {
         stopListeningForResponse()
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
@@ -81,12 +81,12 @@ public class AIConfiguration {
                 let input = result.bestTranscription.formattedString
                 self.delegate?.configuration(self, userInputUpdated: input)
                 timer?.invalidate()
-                timer = Timer(timeInterval: 2.0, repeats: false) { _ in
+                timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
                     self.stopListeningForResponse()
                     self.makeWitRequest(with: input)
                 }
-            } else {
-                self.delegate?.configuration(self, didReceiveResponse: .failure)
+            } else if (error as NSError?)?.code != 216 {
+                self.makeGoogleRequest(with: .failure)
             }
         }
         let inputNode = audioEngine.inputNode
@@ -102,40 +102,60 @@ public class AIConfiguration {
             try audioEngine.start()
         } catch {
             stopListeningForResponse()
-            delegate?.configuration(self, didReceiveResponse: .failure)
+            makeGoogleRequest(with: .failure)
         }
     }
     
-    public func makeWitRequest(with text: String) {
+    private func makeWitRequest(with text: String) {
         self.delegate?.configurationStartedLoadingResponse(self)
-        let url = URL(string: "https://api.wit.ai/message")!
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        var components = URLComponents(string: "https://api.wit.ai/message")!
         components.queryItems = [URLQueryItem(name: "q", value: text)]
-        urlSession.dataTask(with: components.url!) { (data, response, error) in
-            guard let data = data else { return }
+        urlSession.dataTask(with: components.url!) { (data, _, _) in
+            guard let data = data else {
+                self.makeGoogleRequest(with: .failure)
+                return
+            }
             let decoder = JSONDecoder()
-            guard let witResponse = try? decoder.decode(WitResponse.self, from: data) else { return }
-            self.delegate?.configuration(self, didReceiveResponse: AIResponse(witResponse: witResponse))
+            guard let witResponse = try? decoder.decode(WitResponse.self, from: data) else {
+                self.makeGoogleRequest(with: .failure)
+                return
+            }
+            guard let aiResponse = AIResponse(with: witResponse) else {
+                self.makeGoogleRequest(with:
+                    self.delegate?.configuration(self, aiResponseFor: witResponse) ?? .failure
+                )
+                return
+            }
+            self.makeGoogleRequest(with: aiResponse)
         }.resume()
     }
     
-    public func makeGoogleRequest(with text: String) {
+    private func makeGoogleRequest(with response: AIResponse) {
         let url = URL(string: "https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=AIzaSyDOx2NKLSBmZx-cjR2Oj3vyI9PIp2CSMMQ")!
         var request = URLRequest(url: url)
         let encoder = JSONEncoder()
-        request.httpBody = try? encoder.encode(GoogleRequest(input: .init(text: text)))
+        request.httpBody = try? encoder.encode(
+            GoogleRequest(input: .init(text: response.message))
+        )
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = ["content-type": "application/json"]
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else { return }
+        URLSession.shared.dataTask(with: request) { (data, _, _) in
+            guard let data = data else {
+                self.delegate?.configuration(self, didReceiveResponse: .failure)
+                return
+            }
             let decoder = JSONDecoder()
-            guard let response = try? decoder.decode(GoogleResponse.self, from: data) else { return }
-            guard let audioData = Data(base64Encoded: response.audioContent) else { return }
+            guard let googleResponse = try? decoder.decode(GoogleResponse.self, from: data),
+                let audioData = Data(base64Encoded: googleResponse.audioContent) else {
+                self.delegate?.configuration(self, didReceiveResponse: .failure)
+                return
+            }
+            self.delegate?.configuration(self, didReceiveResponse: response)
             self.playAudioData(audioData)
         }.resume()
     }
     
-    public func playAudioData(_ data: Data) {
+    private func playAudioData(_ data: Data) {
         do {
             self.audioPlayer = try AVAudioPlayer(data: data)
             self.audioPlayer?.play()
@@ -143,8 +163,3 @@ public class AIConfiguration {
     }
     
 }
-
-
-
-
-

@@ -9,7 +9,7 @@
 protocol AIConfigurationDelegate : class {
     func configuration(_ configuration: AIConfiguration, userInputUpdated input: String)
     func configurationStartedLoadingResponse(_ configuration: AIConfiguration)
+    func configuration(_ configuration: AIConfiguration, aiResponseFor witResponse: WitResponse) -> AIResponse
     func configuration(_ configuration: AIConfiguration, didReceiveResponse response: AIResponse)
     func configuration(_ configuration: AIConfiguration, updatedPowerLevel power: Float)
 }
-

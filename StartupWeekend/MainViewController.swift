@@ -28,7 +28,13 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: AIViewControllerDelegate {
+    
     func didDismiss() {
         self.aiButton.isHidden = false
     }
+    
+    func aiResponse(for witResponse: WitResponse) -> AIResponse {
+        return AIResponse(for: witResponse)
+    }
+    
 }
