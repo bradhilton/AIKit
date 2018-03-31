@@ -176,6 +176,7 @@
 		A2949234206EEC7300DBDD73 /* WitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitResponse.swift; sourceTree = "<group>"; };
 		A2949240206FA3BC00DBDD73 /* AIViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A2949242206FA66800DBDD73 /* AIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponse.swift; sourceTree = "<group>"; };
+		A2949244206FB29500DBDD73 /* GenerateIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateIntents.swift; sourceTree = "<group>"; };
 		AFA66D6BF98FC207069CC851 /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B2CE6FC389BC1B7A06BD62DF /* Pods-AIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIKit/Pods-AIKit.release.xcconfig"; sourceTree = "<group>"; };
 		F62FB8149A70638D4EF812B3 /* Pods-ExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleApp/Pods-ExampleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -337,6 +338,7 @@
 				29CC3B94206EE3E10083F308 /* Media.xcassets */,
 				A2949234206EEC7300DBDD73 /* WitResponse.swift */,
 				A2949240206FA3BC00DBDD73 /* AIViewControllerDelegate.swift */,
+				A2949244206FB29500DBDD73 /* GenerateIntents.swift */,
 			);
 			path = AIKit;
 			sourceTree = "<group>";
