@@ -16,8 +16,8 @@ extension AIResponse {
             return
         }
         switch intent {
-        case "HowDoIUseYou":
-            self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend", sections: [howToSection()])
+        case "howDoIUseYou":
+            self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend")
         case "sendMessage":
             guard let recipient = witResponse.firstValueFor("recipient") else {
                 self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
