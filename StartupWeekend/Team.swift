@@ -7,12 +7,30 @@
 //
 
 import Foundation
+import XTable
 
-//struct Team {
-//    
-//    var name: String
-//    var description: String
-//}
+func section(with team: Team) -> Section {
+    return Section { section in
+        section.rows = [
+           row(with: team)
+        ]
+    }
+}
+
+func teamsSection() -> Section {
+    return Section { section in
+        section.rows = Team.all.map { row(with: $0)}
+    }
+}
+
+func row(with team: Team) -> Row {
+    return Row { row in
+        row.height = .automatic(estimated: 200)
+        row.cell = Cell { (cell: TeamTableViewCell) in
+            cell.configure(with: team)
+        }
+    }
+}
 
 enum Team {
     case aiKit
@@ -20,6 +38,8 @@ enum Team {
     case givv
     case mayday
     case pplCloud
+    
+    static var all: [Team] = [.aiKit, .curbAppeal, .givv, .mayday, .pplCloud]
     
     var name: String {
         switch self {
@@ -30,7 +50,7 @@ enum Team {
         case .givv:
             return "Givv"
         case .mayday:
-            return "Mayday - Anti Bullying App"
+            return "Mayday"
         case .pplCloud:
             return "PPL Cloud"
         }
@@ -62,7 +82,7 @@ enum Team {
         case .mayday:
             return "an Anti Bullying App"
         case .pplCloud:
-            return "A personal server"
+            return "a personal server"
         }
     }
 }

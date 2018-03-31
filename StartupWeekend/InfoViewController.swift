@@ -7,6 +7,66 @@
 //
 
 import UIKit
+import XTable
+
+func logoSection() -> Section {
+    return Section { section in
+        section.rows = [ logoRow() ]
+    }
+}
+
+func logoRow()-> Row {
+    return Row { row in
+        row.height = .automatic(estimated: 200)
+        row.cell = Cell { (cell: StartupWeekendImageTableViewCell)  in }
+    }
+}
+
+
+func startupWeekendSection() -> Section {
+    return Section { section in
+        section.rows = [ startupWeekendRow() ]
+    }
+}
+
+func locationSection() -> Section {
+    return Section { section in
+        section.rows = [ locationRow() ]
+    }
+}
+
+func locationRow()-> Row {
+    return Row { row in
+        row.height = .automatic(estimated: 200)
+        row.cell = Cell { cell in
+            cell.textLabel?.text = StartupWeekend().aiLocation
+        }
+    }
+}
+
+func datesSection() -> Section {
+    return Section { section in
+        section.rows = [ datesRow() ]
+    }
+}
+
+func datesRow()-> Row {
+    return Row { row in
+        row.height = .automatic(estimated: 200)
+        row.cell = Cell { cell in
+            cell.textLabel?.text = StartupWeekend().dates
+        }
+    }
+}
+
+func startupWeekendRow()-> Row {
+    return Row { row in
+        row.height = .automatic(estimated: 200)
+        row.cell = Cell { (cell: StartupWeekendTableViewCell) in }
+    }
+}
+
+class StartupWeekendImageTableViewCell: UITableViewCell {}
 
 class StartupWeekendTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!

@@ -67,6 +67,8 @@ public class AIViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         if let initialSections = configuration.initialSections {
             tableView.sections = initialSections
         }
