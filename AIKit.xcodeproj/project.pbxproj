@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292C8DA0206FEC0700EFB286 /* StartupWeekend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C8D9F206FEC0700EFB286 /* StartupWeekend.swift */; };
+		292C8DA2206FEDEA00EFB286 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C8DA1206FEDEA00EFB286 /* InfoViewController.swift */; };
+		292C8DA4206FEF6A00EFB286 /* StartupWeekendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 292C8DA3206FEF6A00EFB286 /* StartupWeekendTableViewCell.xib */; };
+		292C8DA6206FF27800EFB286 /* StartupWeekendImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 292C8DA5206FF27800EFB286 /* StartupWeekendImageTableViewCell.xib */; };
+		292C8DA8206FF64900EFB286 /* HowToSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C8DA7206FF64900EFB286 /* HowToSection.swift */; };
 		29757B3E206F102B0061471B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29757B3D206F102B0061471B /* AppDelegate.swift */; };
 		29757B40206F102B0061471B /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29757B3F206F102B0061471B /* TeamViewController.swift */; };
 		29757B42206F102B0061471B /* JudgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29757B41206F102B0061471B /* JudgeViewController.swift */; };
@@ -121,6 +126,11 @@
 /* Begin PBXFileReference section */
 		016F9A135AB070743E54B3B1 /* Pods-AIKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AIKitTests/Pods-AIKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F2BC9F77759494496FDA631 /* Pods-StartupWeekend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartupWeekend.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartupWeekend/Pods-StartupWeekend.release.xcconfig"; sourceTree = "<group>"; };
+		292C8D9F206FEC0700EFB286 /* StartupWeekend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupWeekend.swift; sourceTree = "<group>"; };
+		292C8DA1206FEDEA00EFB286 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		292C8DA3206FEF6A00EFB286 /* StartupWeekendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartupWeekendTableViewCell.xib; sourceTree = "<group>"; };
+		292C8DA5206FF27800EFB286 /* StartupWeekendImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartupWeekendImageTableViewCell.xib; sourceTree = "<group>"; };
+		292C8DA7206FF64900EFB286 /* HowToSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToSection.swift; sourceTree = "<group>"; };
 		29757B3B206F102B0061471B /* StartupWeekend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartupWeekend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29757B3D206F102B0061471B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29757B3F206F102B0061471B /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
@@ -256,9 +266,14 @@
 				29757B3D206F102B0061471B /* AppDelegate.swift */,
 				29757B6D206F15170061471B /* Team.swift */,
 				29757B6F206F152F0061471B /* Judge.swift */,
+				292C8DA7206FF64900EFB286 /* HowToSection.swift */,
+				292C8D9F206FEC0700EFB286 /* StartupWeekend.swift */,
 				29757B3F206F102B0061471B /* TeamViewController.swift */,
+				292C8DA1206FEDEA00EFB286 /* InfoViewController.swift */,
 				29757B6B206F13B20061471B /* TeamTableViewCell.xib */,
+				292C8DA3206FEF6A00EFB286 /* StartupWeekendTableViewCell.xib */,
 				29757B71206F17C60061471B /* JudgeTableViewCell.xib */,
+				292C8DA5206FF27800EFB286 /* StartupWeekendImageTableViewCell.xib */,
 				29757B41206F102B0061471B /* JudgeViewController.swift */,
 				29757B43206F102B0061471B /* Main.storyboard */,
 				29757B7A206F2AE30061471B /* MainViewController.swift */,
@@ -579,6 +594,8 @@
 				29757B6C206F13B20061471B /* TeamTableViewCell.xib in Resources */,
 				29757B4A206F102C0061471B /* LaunchScreen.storyboard in Resources */,
 				29757B72206F17C60061471B /* JudgeTableViewCell.xib in Resources */,
+				292C8DA6206FF27800EFB286 /* StartupWeekendImageTableViewCell.xib in Resources */,
+				292C8DA4206FEF6A00EFB286 /* StartupWeekendTableViewCell.xib in Resources */,
 				29757B47206F102C0061471B /* Assets.xcassets in Resources */,
 				29757B45206F102B0061471B /* Main.storyboard in Resources */,
 			);
@@ -844,7 +861,10 @@
 				29757B42206F102B0061471B /* JudgeViewController.swift in Sources */,
 				A2949243206FA66800DBDD73 /* AIResponse.swift in Sources */,
 				29757B70206F152F0061471B /* Judge.swift in Sources */,
+				292C8DA2206FEDEA00EFB286 /* InfoViewController.swift in Sources */,
 				29757B7B206F2AE30061471B /* MainViewController.swift in Sources */,
+				292C8DA0206FEC0700EFB286 /* StartupWeekend.swift in Sources */,
+				292C8DA8206FF64900EFB286 /* HowToSection.swift in Sources */,
 				29757B3E206F102B0061471B /* AppDelegate.swift in Sources */,
 				29757B40206F102B0061471B /* TeamViewController.swift in Sources */,
 			);

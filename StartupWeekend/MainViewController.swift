@@ -18,7 +18,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var aiButton: UIButton!
     
     @IBAction func didTapAIButton(_ sender: Any) {
-        let aiViewController = AIViewController.create(with: AIConfiguration())
+        let configuration = AIConfiguration()
+        configuration.initialSections = [howToSection()]
+        
+        let aiViewController = AIViewController.create(with: configuration)
         aiViewController.delegate = self
         present(aiViewController, animated: true) {
             self.aiButton.isHidden = true

@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "40 7.10.23 PM.png",
+      "filename" : "appicon40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "60.png",
+      "filename" : "appicon60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "58.png",
+      "filename" : "appicon58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "87.png",
+      "filename" : "appicon87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "80.png",
+      "filename" : "appicon80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "120.png",
+      "filename" : "appicon120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120-1.png",
+      "filename" : "appicon120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "180.png",
+      "filename" : "appicon180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "20.png",
+      "filename" : "appicon20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "40 7.10.23 PM-1.png",
+      "filename" : "appicon40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "29 7.10.23 PM.png",
+      "filename" : "appicon.29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "58-1.png",
+      "filename" : "appicon58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "40 7.10.23 PM-2.png",
+      "filename" : "appicon40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "80-1.png",
+      "filename" : "appicon80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "76.png",
+      "filename" : "appicon76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "152.png",
+      "filename" : "appicon152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "167.png",
+      "filename" : "appicon167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "1024.png",
+      "filename" : "appicon.001 copy 12.png",
       "scale" : "1x"
     }
   ],
