@@ -10,8 +10,7 @@ import XTable
 
 let jokes = [
     "If I got 50 cents for every failed math exam, I’d have $ 6.30 now.",
-    "The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed."
-    
+    "The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.",
 ]
 
 public struct AIResponse {
@@ -37,7 +36,7 @@ extension AIResponse {
         case "howSmartAreYou":
             self = AIResponse(message: "I know enough to help you with \(appName).")
         case "tellJoke":
-            self = AIResponse(message: "")
+            self = AIResponse(message: "\(jokes[Int(arc4random_uniform(UInt32(jokes.count)))])")
         case "whoAmI":
             self = AIResponse(message: "The User.")
         case "howAreYouDoing":
