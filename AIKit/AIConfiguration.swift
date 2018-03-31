@@ -6,6 +6,7 @@
 //  Copyright © 2018 AIKit. All rights reserved.
 //
 import Speech
+import XTable
 
 private let urlSessionConfiguration : URLSessionConfiguration = {
     let configuration = URLSessionConfiguration.default
@@ -22,17 +23,58 @@ public class AIConfiguration {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
     private var audioPlayer: AVAudioPlayer?
+    private var recorder: AVAudioRecorder?
     public var appName: String?
+    public var initialSections: [Section]?
     
     public init() {
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try! audioSession.setMode(AVAudioSessionModeMeasurement)
         try! audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+        
+        let displaylink: CADisplayLink = CADisplayLink(target: self, selector: #selector(updateMeters))
+        displaylink.add(to: RunLoop.current, forMode: .commonModes)
+    }
+    
+    @objc private func updateMeters() {
+        self.recorder?.updateMeters()
+        
+        guard let averagePower = self.recorder?.averagePower(forChannel: 0) else { return }
+        delegate?.configuration(self, updatedPowerLevel: averagePower)
+        
     }
     
     func awaitForResponse(for text: String) {
         makeWitRequest(with: text)
+    }
+    
+    private func record() {
+        guard let url = URL(string: "/dev/null") else { return }
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
+        ]
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().setActive(true)
+            recorder = try AVAudioRecorder(url: url, settings: settings)
+            AVAudioSession.sharedInstance().requestRecordPermission({ (allowed) in
+                guard allowed else { return }
+                DispatchQueue.main.async {
+                    self.recorder?.prepareToRecord()
+                    self.recorder?.isMeteringEnabled = true
+                    self.recorder?.record()
+                }
+            })
+            
+        } catch {
+            print(error)
+        }
     }
     
     func startListeningForResponse() {
@@ -47,6 +89,7 @@ public class AIConfiguration {
     }
     
     func stopListeningForResponse() {
+        recorder?.stop()
         if let request = request {
             request.endAudio()
             self.request = nil
@@ -56,6 +99,7 @@ public class AIConfiguration {
             self.task = nil
         }
         if audioEngine.isRunning {
+            audioEngine.inputNode.removeTap(onBus: 0)
             audioEngine.stop()
         }
     }
@@ -73,6 +117,7 @@ public class AIConfiguration {
     
     private func startRecognitionTask() {
         stopListeningForResponse()
+        record()
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         self.request = request
@@ -93,9 +138,6 @@ public class AIConfiguration {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            if let power = buffer.power {
-                self.delegate?.configuration(self, updatedPowerLevel: power)
-            }
             request.append(buffer)
         }
         audioEngine.prepare()

@@ -13,6 +13,10 @@ import Lottie
 
 public class AIViewController: UIViewController {
     
+    @IBOutlet weak var listenButton: RoundedButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var responseLabel: UILabel!
+    @IBOutlet weak var userInputLabel: UILabel!
     
     @IBOutlet weak var waveView: WaveView!
     public weak var delegate: AIViewControllerDelegate?
@@ -25,6 +29,14 @@ public class AIViewController: UIViewController {
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     @IBOutlet weak var aiView: UIView!
+    
+    @IBAction func didTapListenButton(_ sender: Any) {
+        self.listenButton.isHidden = true
+        self.responseLabel.text = "I'm listening..."
+        self.userInputLabel.text = ""
+        self.waveView.isHidden = false
+        configuration.startListeningForResponse()
+    }
     
     public override var prefersStatusBarHidden: Bool {
         return true
@@ -43,12 +55,21 @@ public class AIViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        waveView.update(with: 0.5)
+//        waveView.update(with: 1)
         configuration.startListeningForResponse()
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        configuration.stopListeningForResponse()
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+        if let initialSections = configuration.initialSections {
+            tableView.sections = initialSections
+        }
         
     }
     
@@ -64,11 +85,14 @@ public class AIViewController: UIViewController {
 extension AIViewController: AIConfigurationDelegate {
     
     func configuration(_ configuration: AIConfiguration, userInputUpdated input: String) {
-        
+        DispatchQueue.main.async {
+            self.userInputLabel.text = input
+        }
     }
     
     func configurationStartedLoadingResponse(_ configuration: AIConfiguration) {
-        
+        DispatchQueue.main.async {
+        }
     }
     
     func configuration(_ configuration: AIConfiguration, aiResponseFor witResponse: WitResponse) -> AIResponse {
@@ -76,7 +100,12 @@ extension AIViewController: AIConfigurationDelegate {
     }
     
     func configuration(_ configuration: AIConfiguration, didReceiveResponse response: AIResponse) {
-        
+        DispatchQueue.main.async {
+            self.waveView.isHidden = true
+            self.listenButton.isHidden = false
+            self.responseLabel.text = response.message
+            self.tableView.sections = response.sections
+        }
     }
     
     func configuration(_ configuration: AIConfiguration, updatedPowerLevel power: Float) {

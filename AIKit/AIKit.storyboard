@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,20 +25,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXs-ab-FiQ">
-                                <rect key="frame" x="187.66666666666666" y="648" width="0.0" height="0.0"/>
+                                <rect key="frame" x="37.666666666666657" y="48" width="300" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0E-Ze-W4p" customClass="WaveView" customModule="AIKit" customModuleProvider="target">
-                                        <rect key="frame" x="-168.66666666666666" y="-106" width="337.66666666666669" height="50"/>
+                                        <rect key="frame" x="-18.666666666666657" y="464" width="337.66666666666663" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="EGK-BK-PFS"/>
+                                            <constraint firstAttribute="height" constant="80" id="EGK-BK-PFS"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="amplitude">
                                                 <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="waveColor">
-                                                <color key="value" white="0.84984037611219621" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="value" white="0.84984037609999996" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="primaryWaveLineWidth">
                                                 <real key="value" value="3"/>
@@ -58,20 +60,59 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="pFX-g6-0Zl">
-                                        <rect key="frame" x="0.0" y="-56" width="0.0" height="56"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ss-pR-ocl">
+                                        <rect key="frame" x="129.33333333333334" y="484" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6Ss-pR-ocl" secondAttribute="height" multiplier="1:1" id="Gdg-rD-lGV"/>
+                                        </constraints>
+                                        <state key="normal" image="atom-hand-drawn-symbol"/>
+                                        <connections>
+                                            <action selector="didTapListenButton:" destination="6gS-Xj-n29" eventType="touchUpInside" id="Bfs-AC-aCw"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar userInteractionEnabled="NO" contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="pFX-g6-0Zl">
+                                        <rect key="frame" x="0.0" y="544" width="300" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jl8-kT-3ox">
+                                        <rect key="frame" x="24" y="24" width="260" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome! Here are some things you can ask me: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5df-kr-UJ2">
+                                        <rect key="frame" x="24" y="34" width="260" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XtQ-o1-PVO">
+                                        <rect key="frame" x="8" y="64.333333333333343" width="284" height="399.66666666666663"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="U0E-Ze-W4p" firstAttribute="centerX" secondItem="kXs-ab-FiQ" secondAttribute="centerX" id="05J-UJ-XZX"/>
-                                    <constraint firstAttribute="width" id="8BD-mw-Erd"/>
+                                    <constraint firstItem="5df-kr-UJ2" firstAttribute="top" secondItem="jl8-kT-3ox" secondAttribute="bottom" constant="10" id="0je-Mj-O1d"/>
+                                    <constraint firstAttribute="width" constant="300" id="8BD-mw-Erd"/>
+                                    <constraint firstItem="XtQ-o1-PVO" firstAttribute="top" secondItem="5df-kr-UJ2" secondAttribute="bottom" constant="30" id="CyL-Zd-J30"/>
+                                    <constraint firstItem="6Ss-pR-ocl" firstAttribute="centerY" secondItem="U0E-Ze-W4p" secondAttribute="centerY" id="HEn-M5-IeC"/>
                                     <constraint firstAttribute="trailing" secondItem="pFX-g6-0Zl" secondAttribute="trailing" id="HgY-y7-v3A"/>
-                                    <constraint firstAttribute="height" id="Uj6-9E-65L"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="5df-kr-UJ2" secondAttribute="trailing" constant="8" id="MNc-tR-aPh"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="jl8-kT-3ox" secondAttribute="trailing" constant="8" id="O2u-JH-1dq"/>
+                                    <constraint firstItem="6Ss-pR-ocl" firstAttribute="height" secondItem="U0E-Ze-W4p" secondAttribute="height" multiplier="0.75" id="TxG-RF-YH5"/>
+                                    <constraint firstAttribute="height" constant="600" id="Uj6-9E-65L"/>
+                                    <constraint firstItem="jl8-kT-3ox" firstAttribute="top" secondItem="kXs-ab-FiQ" secondAttribute="topMargin" constant="16" id="YGx-IV-1Cd"/>
                                     <constraint firstAttribute="bottom" secondItem="pFX-g6-0Zl" secondAttribute="bottom" id="bxY-SN-Ocz"/>
+                                    <constraint firstItem="U0E-Ze-W4p" firstAttribute="top" secondItem="XtQ-o1-PVO" secondAttribute="bottom" id="dXr-hk-KJK"/>
+                                    <constraint firstItem="5df-kr-UJ2" firstAttribute="leading" secondItem="jl8-kT-3ox" secondAttribute="leading" id="eNe-bU-9fh"/>
+                                    <constraint firstItem="6Ss-pR-ocl" firstAttribute="centerX" secondItem="U0E-Ze-W4p" secondAttribute="centerX" id="q0K-ad-iYs"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="XtQ-o1-PVO" secondAttribute="trailing" id="rQk-HH-yZA"/>
+                                    <constraint firstItem="jl8-kT-3ox" firstAttribute="leading" secondItem="kXs-ab-FiQ" secondAttribute="leadingMargin" constant="16" id="uGe-Wd-7ZM"/>
                                     <constraint firstItem="pFX-g6-0Zl" firstAttribute="top" secondItem="U0E-Ze-W4p" secondAttribute="bottom" id="wZI-LP-XMa"/>
                                     <constraint firstItem="pFX-g6-0Zl" firstAttribute="leading" secondItem="kXs-ab-FiQ" secondAttribute="leading" id="yGI-eB-fMT"/>
+                                    <constraint firstItem="XtQ-o1-PVO" firstAttribute="leading" secondItem="kXs-ab-FiQ" secondAttribute="leadingMargin" id="ya1-SP-bwS"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -97,9 +138,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g00-y1-T4g" customClass="RoundedButton" customModule="AIKit">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g00-y1-T4g" customClass="RoundedButton" customModule="AIKit">
                                 <rect key="frame" x="300" y="663" width="55" height="55"/>
-                                <color key="backgroundColor" red="0.31583872439999999" green="0.68506056069999999" blue="0.34107580780000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.37254901960784315" green="0.52941176470588236" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="N67-5v-zcZ"/>
                                     <constraint firstAttribute="height" constant="55" id="aYR-Mn-Hiw"/>
@@ -130,15 +171,20 @@
                         <outlet property="aiView" destination="kXs-ab-FiQ" id="jl0-8a-hi7"/>
                         <outlet property="aiViewHeight" destination="Uj6-9E-65L" id="vKa-FP-3JU"/>
                         <outlet property="aiViewWidth" destination="8BD-mw-Erd" id="lbv-te-ew7"/>
+                        <outlet property="listenButton" destination="6Ss-pR-ocl" id="B9c-Dk-Fy0"/>
+                        <outlet property="responseLabel" destination="5df-kr-UJ2" id="QTi-kB-AMt"/>
+                        <outlet property="tableView" destination="XtQ-o1-PVO" id="0mo-nk-T6o"/>
+                        <outlet property="userInputLabel" destination="jl8-kT-3ox" id="oRP-CF-k72"/>
                         <outlet property="waveView" destination="U0E-Ze-W4p" id="BiV-cf-P8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lc1-Ec-0nS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="141.84782608695653"/>
+            <point key="canvasLocation" x="135.19999999999999" y="141.13300492610838"/>
         </scene>
     </scenes>
     <resources>
-        <image name="cancel-2" width="42" height="42"/>
+        <image name="atom-hand-drawn-symbol" width="42" height="42"/>
+        <image name="cancel-2" width="21" height="21"/>
     </resources>
 </document>
