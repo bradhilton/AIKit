@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +26,7 @@
                                 <rect key="frame" x="187.66666666666666" y="648" width="0.0" height="0.0"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0E-Ze-W4p" customClass="WaveView" customModule="AIKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-106" width="0.0" height="50"/>
+                                        <rect key="frame" x="-168.66666666666666" y="-106" width="337.66666666666669" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="EGK-BK-PFS"/>
@@ -67,7 +68,6 @@
                                     <constraint firstItem="U0E-Ze-W4p" firstAttribute="centerX" secondItem="kXs-ab-FiQ" secondAttribute="centerX" id="05J-UJ-XZX"/>
                                     <constraint firstAttribute="width" id="8BD-mw-Erd"/>
                                     <constraint firstAttribute="trailing" secondItem="pFX-g6-0Zl" secondAttribute="trailing" id="HgY-y7-v3A"/>
-                                    <constraint firstItem="U0E-Ze-W4p" firstAttribute="width" secondItem="kXs-ab-FiQ" secondAttribute="width" id="RbZ-7o-SAQ"/>
                                     <constraint firstAttribute="height" id="Uj6-9E-65L"/>
                                     <constraint firstAttribute="bottom" secondItem="pFX-g6-0Zl" secondAttribute="bottom" id="bxY-SN-Ocz"/>
                                     <constraint firstItem="pFX-g6-0Zl" firstAttribute="top" secondItem="U0E-Ze-W4p" secondAttribute="bottom" id="wZI-LP-XMa"/>
@@ -97,14 +97,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g00-y1-T4g" customClass="RoundedButton" customModule="AIKit">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g00-y1-T4g" customClass="RoundedButton" customModule="AIKit">
                                 <rect key="frame" x="300" y="663" width="55" height="55"/>
                                 <color key="backgroundColor" red="0.31583872439999999" green="0.68506056069999999" blue="0.34107580780000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="N67-5v-zcZ"/>
                                     <constraint firstAttribute="height" constant="55" id="aYR-Mn-Hiw"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="cancel-2">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -121,6 +121,7 @@
                             <constraint firstItem="g00-y1-T4g" firstAttribute="top" secondItem="kXs-ab-FiQ" secondAttribute="bottom" constant="15" id="kb6-DT-fwj"/>
                             <constraint firstAttribute="bottom" secondItem="1Lf-Ba-VFI" secondAttribute="bottom" id="le7-u7-WGL"/>
                             <constraint firstItem="kXs-ab-FiQ" firstAttribute="centerX" secondItem="xgu-8j-iix" secondAttribute="centerX" id="oe3-YG-qz6"/>
+                            <constraint firstItem="U0E-Ze-W4p" firstAttribute="width" secondItem="1Lf-Ba-VFI" secondAttribute="width" multiplier="0.9" id="u1K-rx-SZG"/>
                             <constraint firstItem="1Lf-Ba-VFI" firstAttribute="leading" secondItem="3Xa-7R-pAl" secondAttribute="leading" id="x0O-bq-cAC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xgu-8j-iix"/>
@@ -137,4 +138,7 @@
             <point key="canvasLocation" x="136.23188405797103" y="141.84782608695653"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel-2" width="42" height="42"/>
+    </resources>
 </document>

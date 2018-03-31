@@ -76,7 +76,7 @@
                                     <constraint firstAttribute="height" constant="55" id="AKK-KM-ojf"/>
                                     <constraint firstAttribute="width" constant="55" id="Gey-WZ-bn4"/>
                                 </constraints>
-                                <state key="normal" image="microphone">
+                                <state key="normal" image="atom-hand-drawn-symbol-2">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -202,7 +202,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="atom-hand-drawn-symbol-2" width="32" height="32"/>
         <image name="contacts" width="32" height="32"/>
-        <image name="microphone" width="32" height="32"/>
     </resources>
 </document>
