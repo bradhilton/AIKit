@@ -31,6 +31,7 @@ public class AIViewController: UIViewController {
     @IBOutlet weak var aiView: UIView!
     
     @IBAction func didTapListenButton(_ sender: Any) {
+        tableView.sections = []
         self.listenButton.isHidden = true
         self.responseLabel.text = "I'm listening..."
         self.userInputLabel.text = ""
@@ -69,9 +70,6 @@ public class AIViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
-        if let initialSections = configuration.initialSections {
-            tableView.sections = initialSections
-        }
         
     }
     

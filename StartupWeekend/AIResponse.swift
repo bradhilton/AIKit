@@ -17,7 +17,7 @@ extension AIResponse {
         }
         switch intent {
         case "HowDoIUseYou":
-            self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend")
+            self = AIResponse(message: "Ask me to show you or tell you about anything in Startup Weekend", sections: [howToSection()])
         case "sendMessage":
             guard let recipient = witResponse.firstValueFor("recipient") else {
                 self = AIResponse(message: "Who would you like to send it to?", needsFollowUp: true)
@@ -80,7 +80,7 @@ extension AIResponse {
             case "peter":
                 self = AIResponse(message: "Here is some info about \(Judge.peter.name)", sections:[section(with: Judge.peter)])
             default:
-                self = AIResponse(message: "I can't find\(object)")
+                self = AIResponse(message: "I don't know how to answer that, here are some questions you can ask me:", sections: [howToSection()])
             }
         case "tell":
             guard let object = witResponse.firstValueFor("object") else {
@@ -139,7 +139,7 @@ extension AIResponse {
             case "peter":
                 self = AIResponse(message: "\(Judge.peter.name) \(Judge.peter.aiDescription)")
             default:
-                self = AIResponse(message: "I can't find\(object)")
+                self = AIResponse(message: "I don't know how to answer that, here are some questions you can ask me:", sections: [howToSection()])
             }
         default:
             self = .failure
