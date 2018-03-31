@@ -15,31 +15,33 @@ let urlSessionConfiguration : URLSessionConfiguration = {
 
 public class AIConfiguration {
     
+    weak var delegate: AIConfigurationDelegate?
     let recognizer = SFSpeechRecognizer(locale: .autoupdatingCurrent)!
     let audioEngine = AVAudioEngine()
     let urlSession = URLSession(configuration: urlSessionConfiguration)
     var request: SFSpeechAudioBufferRecognitionRequest?
     var task: SFSpeechRecognitionTask?
+    var audioPlayer: AVAudioPlayer?
     
     public init() {
         let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setCategory(AVAudioSessionCategoryRecord)
+        try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try! audioSession.setMode(AVAudioSessionModeMeasurement)
         try! audioSession.setActive(true, with: .notifyOthersOnDeactivation)
     }
     
-    public func awaitForResponse(for text: String, with completion: (AIResponse) -> ()){
-        completion(.text("Hello_Lorraine"))
+    public func awaitForResponse(for text: String) {
+        makeWitRequest(with: text)
     }
     
-    public func startListeningForResponse(with completion: @escaping (AIResponse) -> ()) {
+    public func startListeningForResponse() {
         switch SFSpeechRecognizer.authorizationStatus() {
         case .authorized:
-            startRecognitionTask(with: completion)
+            startRecognitionTask()
         case .notDetermined:
-            requestAuthorization(with: completion)
+            requestAuthorization()
         default:
-            completion(.failure)
+            delegate?.configuration(self, didReceiveResponse: .failure)
         }
     }
     
@@ -57,18 +59,18 @@ public class AIConfiguration {
         }
     }
     
-    func requestAuthorization(with completion: @escaping (AIResponse) -> ()) {
+    func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { authorizationStatus in
             switch authorizationStatus {
             case .authorized:
-                self.startRecognitionTask(with: completion)
+                self.startRecognitionTask()
             default:
-                completion(.failure)
+                self.delegate?.configuration(self, didReceiveResponse: .failure)
             }
         }
     }
     
-    func startRecognitionTask(with completion: @escaping (AIResponse) -> ()) {
+    func startRecognitionTask() {
         stopListeningForResponse()
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
@@ -76,18 +78,23 @@ public class AIConfiguration {
         var timer: Timer?
         task = recognizer.recognitionTask(with: request) { (result, error) in
             if let result = result {
+                let input = result.bestTranscription.formattedString
+                self.delegate?.configuration(self, userInputUpdated: input)
                 timer?.invalidate()
                 timer = Timer(timeInterval: 2.0, repeats: false) { _ in
                     self.stopListeningForResponse()
-                    self.makeWitRequest(with: result.bestTranscription.formattedString, and: completion)
+                    self.makeWitRequest(with: input)
                 }
             } else {
-                completion(.failure)
+                self.delegate?.configuration(self, didReceiveResponse: .failure)
             }
         }
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            if let power = buffer.power {
+                self.delegate?.configuration(self, updatedPowerLevel: power)
+            }
             request.append(buffer)
         }
         audioEngine.prepare()
@@ -95,11 +102,12 @@ public class AIConfiguration {
             try audioEngine.start()
         } catch {
             stopListeningForResponse()
-            completion(.failure)
+            delegate?.configuration(self, didReceiveResponse: .failure)
         }
     }
     
-    public func makeWitRequest(with text: String, and completion: @escaping (AIResponse) -> ()){
+    public func makeWitRequest(with text: String) {
+        self.delegate?.configurationStartedLoadingResponse(self)
         let url = URL(string: "https://api.wit.ai/message")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         components.queryItems = [URLQueryItem(name: "q", value: text)]
@@ -107,7 +115,36 @@ public class AIConfiguration {
             guard let data = data else { return }
             let decoder = JSONDecoder()
             guard let witResponse = try? decoder.decode(WitResponse.self, from: data) else { return }
+            self.delegate?.configuration(self, didReceiveResponse: AIResponse(witResponse: witResponse))
         }.resume()
     }
     
+    public func makeGoogleRequest(with text: String) {
+        let url = URL(string: "https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=AIzaSyDOx2NKLSBmZx-cjR2Oj3vyI9PIp2CSMMQ")!
+        var request = URLRequest(url: url)
+        let encoder = JSONEncoder()
+        request.httpBody = try? encoder.encode(GoogleRequest(input: .init(text: text)))
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = ["content-type": "application/json"]
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            guard let response = try? decoder.decode(GoogleResponse.self, from: data) else { return }
+            guard let audioData = Data(base64Encoded: response.audioContent) else { return }
+            self.playAudioData(audioData)
+        }.resume()
+    }
+    
+    public func playAudioData(_ data: Data) {
+        do {
+            self.audioPlayer = try AVAudioPlayer(data: data)
+            self.audioPlayer?.play()
+        } catch {}
+    }
+    
 }
+
+
+
+
+
