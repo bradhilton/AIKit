@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     @IBAction func didTapAIButton(_ sender: Any) {
         let configuration = AIConfiguration()
         configuration.initialSections = [howToSection()]
-        
+        configuration.appName = "the Startup Weekend app"
         let aiViewController = AIViewController.create(with: configuration)
         aiViewController.delegate = self
         present(aiViewController, animated: true) {
