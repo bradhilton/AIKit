@@ -14,7 +14,7 @@ class TeamTableViewCell: UITableViewCell {
     
     func configure(with team: Team) {
         nameLabel.text = team.name
-        descriptionLabel.text = team.description
+        descriptionLabel.text = team.cellDescription
     }
     
 }
